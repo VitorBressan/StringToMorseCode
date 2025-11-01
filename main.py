@@ -18,15 +18,25 @@ MORSE_CODE_DICT: dict[str, str] = {
     "$": "...-..-", "@": ".--.-.", " ": "/"
 }
 
-# String to be translated to Morse code
-text_to_translate: str = str(input("Texto a ser traduzido:"))
+# Converts each character of a text into Morse code
+def convert_to_morse(text: str):
+    morse_code_text: str = ""
+    for char in text_to_translate:
+        char = char.upper()
+        if char in MORSE_CODE_DICT:
+            morse_code_text += MORSE_CODE_DICT[char] + " "
+    return morse_code_text
 
-# Converts each character of text_to_translate into Morse code
-morse_code_text: str = ""
-for char in text_to_translate:
-    char = char.upper()
-    if char in MORSE_CODE_DICT:
-        morse_code_text += MORSE_CODE_DICT[char] + " "
+while True:
 
-os.system('clear || cls')
-print(f"Original text: {text_to_translate}\nMorse code: {morse_code_text}")
+    # String to be translated to Morse code
+    text_to_translate: str = str(input('Text to be translated ("Exit to leave"):'))
+    os.system('clear || cls')
+
+    # Exit the aplication if the users type "Exit"
+    if text_to_translate == "Exit":
+        print("Thank you for using this program!")
+        break
+
+    # Prints the translation
+    print(f"Original text: {text_to_translate}\nMorse code: {convert_to_morse(text_to_translate)}")
